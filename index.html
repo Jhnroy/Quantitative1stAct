@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotka-Volterra Predator-Prey Model</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Lotka-Volterra Predator-Prey Model</h1>
+</header>
+
+<div class="container">
+    <div class="content">
+        <h2>Introduction</h2>
+        <p>The Lotka-Volterra model describes the interaction between two species: a predator (foxes) and prey (rabbits).</p>
+        
+        <h2>Simulation Results</h2>
+        <p>The graph below shows the population changes of rabbits and foxes over time.</p>
+        <canvas id="populationChart"></canvas>
+
+        <h2>Phase Plane</h2>
+        <p>The phase plane plot below shows the trajectory of the populations of rabbits and foxes.</p>
+        <canvas id="phasePlaneChart"></canvas>
+    </div>
+</div>
+
+</body>
+
+<script>
+    // Lotka-Volterra model parameters
+    const alpha = 1.1;  // Growth rate of rabbits
+    const beta = 0.4;   // Rate at which foxes destroy rabbits
+    const gamma = 0.4;  // Death rate of foxes
+    const delta = 0.1;  // Rate at which foxes increase by consuming rabbits
+
+    // Initial populations
+    let rabbits = 40;
+    let foxes = 9;
+
+    // Time parameters
+    const timeStep = 0.1;
+    const totalSteps = 500;
+
+    // Data arrays
+    const timeData = [];
+    const rabbitsData = [];
+    const foxesData = [];
+
+    // Simulation loop
+    for (let i = 0; i <= totalSteps; i++) {
+        // Store data for plotting
+        timeData.push(i * timeStep);
+        rabbitsData.push(rabbits);
+        foxesData.push(foxes);
+
+        // Update populations using the Lotka-Volterra equations
+        const dR = alpha * rabbits - beta * rabbits * foxes;
+        const dF = delta * rabbits * foxes - gamma * foxes;
+
+        rabbits += dR * timeStep;
+        foxes += dF * timeStep;
+    }
+
+    // Create Population Dynamics Chart
+    const ctxPopulation = document.getElementById('populationChart').getContext('2d');
+    new Chart(ctxPopulation, {
+        type: 'line',
+        data: {
+            labels: timeData,
+            datasets: [
+                {
+                    label: 'Rabbits',
+                    data: rabbitsData,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: false
+                },
+                {
+                    label: 'Foxes',
+                    data: foxesData,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Time'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Population'
+                    }
+                }
+            }
+        }
+    });
+
+    // Create Phase Plane Plot
+    const ctxPhasePlane = document.getElementById('phasePlaneChart').getContext('2d');
+    new Chart(ctxPhasePlane, {
+        type: 'scatter',
+        data: {
+            datasets: [
+                {
+                    label: 'Phase Plane',
+                    data: timeData.map((t, i) => ({x: rabbitsData[i], y: foxesData[i]})),
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    showLine: true,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Rabbits'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Foxes'
+                    }
+                }
+            }
+        }
+    });
+</script>
+</html>
