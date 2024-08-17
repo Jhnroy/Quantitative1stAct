@@ -15,6 +15,7 @@ body {
     background-color: #D0F0C0;
     border-radius: 16px;
 }
+
 header {
     background: #50b3a2;
     color: #000000;
@@ -23,10 +24,11 @@ header {
     border-bottom: #2980b9 3px solid;
 }
 header h1 {
-    text-align: center;
     text-transform: uppercase;
     margin: 0;
-    font-size: 24px;
+    padding: 1rem;
+    font-size: 3vh;
+    line-height: 3rem;
 }
 .content {
     padding: 20px;
@@ -35,4 +37,15 @@ canvas {
     max-width: 100%;
     height: auto;
     margin-top: 20px;
+}
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: #50b3a2;
+    line-height: 3rem;
+    font-size: 3vh;
+    font-weight:500;
 }
