@@ -19,9 +19,7 @@ body {
 header {
     background: #50b3a2;
     color: #000000;
-    padding-top: 30px;
     min-height: 70px;
-    border-bottom: #2980b9 3px solid;
 }
 header h1 {
     text-transform: uppercase;
@@ -46,6 +44,24 @@ footer{
     padding: 1rem;
     background: #50b3a2;
     line-height: 3rem;
-    font-size: 3vh;
+    font-size: large;
     font-weight:500;
+}
+@media screen and (max-width: 450px) {
+
+    header h1{
+        padding: 1vh;
+        font-size: medium;
+    }
+    .content{
+        font-size: medium;
+        line-height: 2rem;
+    }
+    footer{
+        padding: 1vh;
+        font-size: medium;
+        font-weight:500;
+    }
+    
+
 }
