@@ -36,17 +36,25 @@ canvas {
     height: auto;
     margin-top: 20px;
 }
-footer{
+footer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem;
     background: #50b3a2;
     line-height: 3rem;
     font-size: large;
     font-weight:500;
 }
+
+footer .section2{
+    padding: 1rem;
+    margin-bottom: 2rem;
+    
+}
+
+
 @media screen and (max-width: 450px) {
 
     header h1{
@@ -54,13 +62,13 @@ footer{
         font-size: medium;
     }
     .content{
-        font-size: medium;
+        font-size: small;
         line-height: 2rem;
     }
     footer{
-        padding: 1vh;
-        font-size: medium;
-        font-weight:500;
+        padding: 0;
+        line-height: 2rem;
+        font-size: small;
     }
     
 
